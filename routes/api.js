@@ -8,9 +8,9 @@
 
 'use strict';
 
-var expect = require('chai').expect;
-var MongoClient = require('mongodb');
-var ObjectId = require('mongodb').ObjectID;
+const expect = require('chai').expect;
+const MongoClient = require('mongodb');
+const ObjectId = require('mongodb').ObjectID;
 const mongoose = require('mongoose');
 const NewIssueHandler = require('../controllers/newIssueHandler.js');
 const UpdatedIssueHandler = require('../controllers/updatedIssueHandler.js');
@@ -19,8 +19,9 @@ const CONNECTION_STRING = process.env.MLAB_URI; //ongoClient.connect(CONNECTION_
 
 
 const connectOptions = { 
-  useMongoClient: true,
-  autoReconnect: true
+  useFindAndModify: false,
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 };
 
 mongoose.connect(CONNECTION_STRING, connectOptions, err => {
@@ -28,7 +29,7 @@ mongoose.connect(CONNECTION_STRING, connectOptions, err => {
     console.log('Could NOT connect to database: ', err);
   }
   else {
-    console.log('Connection to database succesful');
+    console.log('Connection to database succesful'); 
   }
 });
 
